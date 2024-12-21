@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud activación cédula digital</title>
+    <link rel="stylesheet" href="estilos2.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Solicitud activación cédula digital</h1>
+        
+        <div class="form-container">
+            <h2>REGISTRO DE DATOS PARA LA SOLICITUD DEL CÓDIGO QR CORRESPONDIENTE A LA ACTIVACIÓN DE LA CÉDULA DIGITAL</h2>
+            
+            <form id="solicitudForm">
+                <div class="form-group">
+                    <label for="nombre">NOMBRE COMPLETO</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="documento">NÚMERO DE IDENTIDAD</label>
+                        <input type="text" id="documento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">FECHA DE EXPEDICIÓN</label>
+                        <input type="text" id="fecha" placeholder="DD-MM-AAAA" required>
+                    </div>
+                </div>
+
+                <p class="notice">El correo electrónico debe ser el mismo que registró al momento del trámite de su cédula digital</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">CORREO ELECTRÓNICO</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-confirm">CONFIRMAR CORREO ELECTRÓNICO</label>
+                        <input type="email" id="email-confirm" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono">TELÉFONO</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo">TIPO DE SOLICITUD</label>
+                        <input type="text" id="tipo" value="QR cédula digital" readonly>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="confirmo" required>
+                    <label for="confirmo">CONFIRMO QUE YA RECLAME LA CÉDULA DIGITAL EN SU VERSIÓN FÍSICA.</label>
+                </div>
+
+                <button type="submit">Enviar Solicitud</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        function validarFecha(fecha) {
+            const regexFecha = /^\d{2}-\d{2}-\d{4}$/; 
+            return regexFecha.test(fecha);
+        }
+
+        document.getElementById("solicitudForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            const nombre = document.getElementById("nombre").value.trim();
+            const documento = document.getElementById("documento").value.trim();
+            const fecha = document.getElementById("fecha").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const emailConfirm = document.getElementById("email-confirm").value.trim();
+            const telefono = document.getElementById("telefono").value.trim();
+            const confirmo = document.getElementById("confirmo").checked;
+
+
+            if (!nombre || !documento || !fecha || !email || !emailConfirm || !telefono || !confirmo) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campos incompletos',
+                    text: 'Por favor, complete todos los campos antes de enviar la solicitud.',
+                    confirmButtonText: 'Aceptar'
+                });
+                return;
+            }
+
+            if (!validarFecha(fecha)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Formato de fecha inválido',
+                    text: 'La fecha de expedición debe estar en el formato DD-MM-AAAA.',
+                    confirmButtonText: 'Aceptar'
+                });
+                return;
+            }
+
+            if (email !== emailConfirm) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Correos no coinciden',
+                    text: 'El correo electrónico y su confirmación deben ser iguales.',
+                    confirmButtonText: 'Aceptar'
+                });
+                return;
+            }
+
+            Swal.fire({
+                icon: 'success',
+                title: '¡Solicitud enviada!',
+                text: 'Su solicitud se ha realizado exitosamente. Se estará enviando el protocolo de activación a la dirección de correo electrónico registrada.',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+    </script>
+</body>
+</html>

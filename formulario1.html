@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación Documento de Identificación Digital</title>
+    <link rel="stylesheet" href="estilos1.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./imagen/imagenregis.jpeg" alt="Logo Registraduría Nacional" class="logo">
+            <h1 class="main-title">Validación Documento de Identificación Digital</h1>
+        </div>
+        
+        <div class="document-info">
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">NUIP</span>
+                    <div class="value-box">1057347815</div>
+                </div>
+            </div>
+        </div>  
+
+        <div class="section-title">
+            Datos del inscrito
+        </div>
+
+        <div class="personal-info">
+            <div class="info-grid">
+                <div class="grid-item">
+                    <span class="label">Apellidos</span>
+                    <div class="value-box">ALSURORI ALGHOURI</div>
+                </div>
+                <div class="grid-item">
+                    <span class="label">Nombres</span>
+                    <div class="value-box">MAJID ABDULAZIZ ABDO</div>
+                </div>
+                
+                <div class="grid-item">
+                    <span class="label">Fecha de nacimiento</span>
+                    <div class="value-box">02-MAR-1982</div>
+                </div>
+                <div class="grid-item">
+                    <span class="label">Sexo</span>
+                    <div class="value-box">M</div>
+                </div>
+                <div class="grid-item">
+                    <span class="label">Nacionalidad</span>
+                    <div class="value-box">COL</div>
+                </div>
+                <div class="grid-item">
+                    <span class="label">Lugar de nacimiento</span>
+                    <div class="value-box">TAIZ-YEMEN</div>
+                </div>
+                <div class="grid-item">
+                    <span class="label">Fecha y lugar de expedición</span>
+                    <div class="value-box">01-FEB-2023, SANTO TOMAS</div>
+                </div>
+                <div class="grid-item">
+                    <span class="label">GS</span>
+                    <div class="value-box">O+</div>
+                </div>
+                <div class="grid-item">
+                    <span class="label">Fecha de expiración</span>
+                    <div class="value-box">01 FEB-2033</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-cerrar">Cerrar</button>
+            <button type="button" class="btn btn-activar" onclick="activarQR()">Activar QR</button>
+        </div>
+    </div>
+
+    <script>
+   
+        document.querySelector('.btn-cerrar').addEventListener('click', function() {
+        
+            window.location.href = "https://www.google.com"; 
+        });
+        function activarQR() {
+            window.location.href = 'formulario2.html';
+        }
+    </script>
+</body>
+</html>
